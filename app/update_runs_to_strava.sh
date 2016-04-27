@@ -117,7 +117,7 @@ then
 fi
 
 #now start listening to the devices being created
-inotifywait -r -m /dev/bus/usb -e CREATE | while read newDevicePluggedIn; 
+inotifywait -r -m /dev/bus/usb -e CREATE -e DELETE | while read newDevicePluggedIn; 
 do 
 	#check if the garmin device is now connected
 	garminDeviceIsConnected=$(lsusb | grep "ID 091e:0003" | wc -l)
