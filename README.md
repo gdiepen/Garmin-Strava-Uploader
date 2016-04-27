@@ -17,15 +17,18 @@ As I recently got started playing around with Docker, I decided that after the s
 You can run the docker container as follows:
 ``` bash
 
-docker run  			--privileged \
-				-v /dev/bus/usb:/dev/bus/usb  \
-				-i \
-				-e STRAVA_KEY='<FILL IN YOUR STRAVA API KEY>' \
-				-e GARMIN_DATA_DIR='/data'  \
-				-t gdiepen/garmin-strava-uploader
+docker run --privileged \
+	-v /dev/bus/usb:/dev/bus/usb  \
+	-i \
+	-e STRAVA_KEY='<FILL IN YOUR STRAVA API KEY>' \
+	-e GARMIN_DATA_DIR='/data'  \
+	-t gdiepen/garmin-strava-uploader
 ```
 
-Please note that I am still working on learning about docker and have not yet figured out all the details about the data containers/volumes. At the moment I map the /data directory in the container to the host directory ~/.garmin-strava-uploader.
+Please note that I am still working on learning about docker and have not yet figured out all the details about the data containers/volumes. At the moment I map the /data directory in the container to the host directory ~/.garmin-strava-uploader by using an additional volume mapping:
+``` bash
+-v ~/.garmin-strava-uploader:/data
+```
 
 Note that you need to map the host /dev/bus/usb directory to the container and allow the container to access the devices by using the privileged argument
 
