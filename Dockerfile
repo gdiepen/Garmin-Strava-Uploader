@@ -22,4 +22,4 @@ VOLUME /data
 
 ADD app /app
 
-CMD ["bash"]
+CMD ["/app/update_runs_to_strava.sh"]
