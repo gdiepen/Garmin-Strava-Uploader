@@ -56,7 +56,6 @@ retrieveConvertAndUpload () {
 			if [ $numberOfTrackpoints -gt 0 ]
 			then
 				echo "Uploading the new TCX file to strava"
-				echo "Strava-key: ${STRAVA_KEY}" >> /data/key.txt
 				
 				if [ "${STRAVA_KEY}" != "" ] 
 				then 	
