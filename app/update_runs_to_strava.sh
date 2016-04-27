@@ -23,7 +23,6 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-
 retrieveConvertAndUpload () {
 	sleep 2
 	garmin_save_runs 
@@ -98,12 +97,17 @@ retrieveConvertAndUpload () {
 	done
 }
 
+if [[ "${GARMIN_DATA_DIR}" == "" ]] 
+then
+	GARMIN_DATA_DIR="~/.garmin_strava_uploader"
+	mkdir ${GARMIN_DATA_DIR}
+fi
 
 
 
 
 #First thing we need to do is ensure we get all the data
-cd /data
+cd ${GARMIN_DATA_DIR}
 mkdir gmn
 mkdir tcx
 cd gmn
@@ -111,12 +115,14 @@ cd gmn
 #When we start, check if the device is already connected
 garminDeviceWasConnected=$(lsusb | grep "ID 091e:0003" | wc -l)
 
+#If the device is connected already when we start, then do the retreiveConverAndUpload 
+#right away
 if [[ ( "$garminDeviceWasConnected" == 1 ) ]] ; 
 then
 	retrieveConvertAndUpload 
 fi
 
-#now start listening to the devices being created
+#now start listening to the devices being created and deleted
 inotifywait -r -m /dev/bus/usb -e CREATE -e DELETE | while read newDevicePluggedIn; 
 do 
 	#check if the garmin device is now connected
