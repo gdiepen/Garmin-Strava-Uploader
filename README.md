@@ -32,3 +32,5 @@ Please note that I am still working on learning about docker and have not yet fi
 
 Note that you need to map the host /dev/bus/usb directory to the container and allow the container to access the devices by using the privileged argument
 
+## Strava API Key
+In order for any application to upload the activity details, you will need to create an app as a developer and get the OAuth2 key for this. How to get this key is a set of steps you need to follow. It is explained if you search on google, but not always in the clearest way. I will update this README to contain the instructions for this in the future
