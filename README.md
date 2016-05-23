@@ -19,6 +19,7 @@ You can run the docker container as follows:
 
 docker run --privileged \
 	-v /dev/bus/usb:/dev/bus/usb  \
+	-v ~/.garmin-strava-uploader:/data \
 	-i \
 	-e STRAVA_KEY='<FILL IN YOUR STRAVA API KEY>' \
 	-e GARMIN_DATA_DIR='/data'  \
